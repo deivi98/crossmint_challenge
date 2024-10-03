@@ -1,5 +1,12 @@
+import dotenv from 'dotenv';
+import { MegaverseClient } from './client/MegaverseClient';
+
+dotenv.config();
+
 function main(): void {
-  console.log(`Hello ${process.env.TEST}`);
+  let client = new MegaverseClient();
+  
+  client.hola();
 }
 
 main();
