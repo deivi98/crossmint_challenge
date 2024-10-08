@@ -1,6 +1,4 @@
-import { MegaverseRequest } from "./MegaverseRequest";
-
-export interface SetAstalObjectRequest extends MegaverseRequest {
-    readonly row: string;
-    readonly column: string;
+export interface SetAstalObjectRequest {
+    readonly row: number;
+    readonly column: number;
 }

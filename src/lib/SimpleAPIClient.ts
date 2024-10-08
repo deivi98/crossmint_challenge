@@ -14,20 +14,11 @@ export class SimpleAPIClient {
     }
 
     async get<T>(path: string): Promise<T> {
-        try {
-            const response: AxiosResponse = await this.client.get(`/${path}`, SimpleAPIClient.config);
-            return response.data as T;
-        } catch(err) {
-            console.log(err);
-            throw err;
-        }  
+        const response: AxiosResponse = await this.client.get(`/${path}`, SimpleAPIClient.config);
+        return response.data as T;
     }
     
     async post(path: string, body: object): Promise<void> {
-        try {
-            await this.client.post(`/${path}`, body, SimpleAPIClient.config);
-        } catch(err) {
-            console.log(err);
-        }  
+        await this.client.post(`/${path}`, body, SimpleAPIClient.config);
     }
 }

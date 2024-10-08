@@ -1,21 +1,23 @@
 import dotenv from 'dotenv';
 import { MegaverseClientImpl } from './client/MegaverseClientImpl';
-import { GoalResponse } from './dto/GoalResponse';
-import { MegaverseMapper } from './mapper/MegaverseMapper';
+import { MegaverseServiceImpl } from './service/MegaverseServiceImpl';
+import { Megaverse } from './model/Megaverse';
 
 dotenv.config();
 
 function main(): void {
     let client = new MegaverseClientImpl();
+    let service = new MegaverseServiceImpl(client);
+    
+    try {
+        service.pullGoalMegaverse().then(async (megaverse: Megaverse) => {
+            service.pushMegaverse(megaverse);
+        })
+    } catch (err) {
+        console.log("Encountered an exception during execution. Stopping program");
+        throw err;
+    }
   
-    client.fetchGoal().then(async (response: GoalResponse) => {
-        console.log(response.goal);
-        const megaverse = MegaverseMapper.buildFromGoal(response.goal);
-        
-        console.log(megaverse);
-        
-        console.log(megaverse.isValid());
-    })
 }
 
-main()
+main();
