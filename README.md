@@ -9,6 +9,16 @@ to achieve desired result.
 
 More about it at https://challenge.crossmint.com/
 
+## Features
+- De-coupled modular project structure
+- Used axios for http requests and implemented rate limiting
+- Multiple layers: request, domain (model), service, client
+- Error handling
+- Interfaces + independent replaceable components
+- Logging for verbosity (track progress)
+- Very light in dependencies
+- Business logic at domain level + validation
+
 ## Installation
 1. Clone repo
 2. Ensure you install and use Node v22
