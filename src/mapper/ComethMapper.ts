@@ -3,6 +3,10 @@ import { Cometh, ComethDirection } from "../model/Cometh";
 import { Position } from "../model/Position";
 import { MegaverseMapper } from "./MegaverseMapper";
 
+/**
+ * Cometh mapper. In charge of mapping from
+ * raw response from API to model + validating
+ */
 export class ComethMapper {
     static buildFromGoal(position: Position, key: string): Cometh {
         const direction: ComethDirection = key.split(MegaverseMapper.SEPARATOR)[0].toLowerCase() as ComethDirection;

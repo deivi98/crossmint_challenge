@@ -1,6 +1,13 @@
 import { InvalidAstralObjectException } from "../error/InvalidAstralObjectException";
 import { AstralObject } from "./AstralObject";
 
+/**
+ * Megaverse domain model. In this layer is where
+ * our app business logic lives.
+ * 
+ * Might not be necessary at the moment. For now only
+ * validation is considered.
+ */
 export class Megaverse {
     constructor(private objects: AstralObject[][] = []) {}
     

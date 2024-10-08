@@ -7,6 +7,11 @@ import { RequestFailedException } from "../error/RequestFailedException";
 import { SimpleAPIClient } from "../lib/SimpleAPIClient";
 import { MegaverseClient } from "./MegaverseClient";
 
+/**
+ * Megaverse API client example implementation
+ * It needs CANDIDATE_ID and it uses simple api client
+ * just for the purpose of this challenge
+ */
 export class MegaverseClientImpl implements MegaverseClient {
     private readonly CANDIDATE_ID: string;
     private readonly apiClient: SimpleAPIClient;

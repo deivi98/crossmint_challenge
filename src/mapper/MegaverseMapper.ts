@@ -7,6 +7,13 @@ import { PolyanetMapper } from "./PolyanetMapper";
 import { SoloonMapper } from "./SoloonMapper";
 import { VoidMapper } from "./VoidMapper";
 
+/**
+ * Megaverse mapper. In charge of mapping from
+ * raw response from API to model + validating
+ * 
+ * Key component of App. Translating entire goal response
+ * to model
+ */
 export class MegaverseMapper {
     static readonly SEPARATOR: string = '_';
 

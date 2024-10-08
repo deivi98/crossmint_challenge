@@ -1,6 +1,11 @@
 import axios, { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 import axiosRateLimit, { RateLimitedAxiosInstance } from "axios-rate-limit";
 
+/**
+ * Just a simple API client using axios lib.
+ * If switching to different lib modifying only this client
+ * would be enough
+ */
 export class SimpleAPIClient {
     private readonly client: RateLimitedAxiosInstance;
 

@@ -6,6 +6,10 @@ interface BaseExceptionProps {
     readonly cause: any;
 }
 
+/**
+ * General exception to be used all
+ * across the application
+ */
 export class BaseException extends Error {
     readonly name: ErrorCode;
     readonly message: string;
