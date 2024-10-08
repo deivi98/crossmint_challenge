@@ -1,7 +1,8 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
+import axios, { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
+import axiosRateLimit, { RateLimitedAxiosInstance } from "axios-rate-limit";
 
 export class SimpleAPIClient {
-    private readonly client: AxiosInstance;
+    private readonly client: RateLimitedAxiosInstance;
 
     private static config: AxiosRequestConfig = {
         headers: {
@@ -10,7 +11,8 @@ export class SimpleAPIClient {
     };
 
     constructor(baseURL: string) {
-        this.client = axios.create({ baseURL });
+        // Sets rate limit to client to avoid throttling from megaverse API
+        this.client = axiosRateLimit(axios.create({ baseURL }), { maxRequests: 1, perMilliseconds: 1000 });
     }
 
     async get<T>(path: string): Promise<T> {

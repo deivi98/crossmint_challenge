@@ -4,10 +4,10 @@ import { Megaverse } from "./Megaverse";
 import { Position } from "./Position";
 
 export enum ComethDirection {
-    UP = 'UP',
-    DOWN = 'DOWN',
-    RIGHT = 'RIGHT',
-    LEFT = 'LEFT'
+    UP = 'up',
+    DOWN = 'down',
+    RIGHT = 'right',
+    LEFT = 'left'
 }
 
 export class Cometh extends AstralObject {

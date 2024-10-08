@@ -27,6 +27,7 @@ export class MegaverseClientImpl implements MegaverseClient {
     async setPolyanet(request: SetPolyanetRequest): Promise<void> {
         try {
             await this.apiClient.post(`polyanets`, { candidateId: this.CANDIDATE_ID, ...request })
+            console.log(`Successfully set POLYANET at position ${request.row}, ${request.column} ...`);
         } catch (err) {
             throw new RequestFailedException(`Failed to set polyanet at position ${request.row}, ${request.column}`, err);
         }
@@ -35,6 +36,7 @@ export class MegaverseClientImpl implements MegaverseClient {
     async setSoloon(request: SetSoloonRequest): Promise<void> {
         try {
             await this.apiClient.post(`soloons`, { candidateId: this.CANDIDATE_ID, ...request });
+            console.log(`Successfully set SOLOON (${request.color}) at position ${request.row}, ${request.column} ...`);
         } catch (err) {
             throw new RequestFailedException(`Failed to set soloon at position ${request.row}, ${request.column}`, err);
         }
@@ -43,6 +45,7 @@ export class MegaverseClientImpl implements MegaverseClient {
     async setCometh(request: SetComethRequest): Promise<void> {
         try {
             await this.apiClient.post(`comeths`, { candidateId: this.CANDIDATE_ID, ...request })
+            console.log(`Successfully set COMETH (${request.direction}) at position ${request.row}, ${request.column} ...`);
         } catch (err) {
             throw new RequestFailedException(`Failed to set cometh at position ${request.row}, ${request.column}`, err);
         }

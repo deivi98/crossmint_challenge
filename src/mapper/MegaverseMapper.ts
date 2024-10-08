@@ -1,3 +1,4 @@
+import { InvalidAstralObjectException } from "../error/InvalidAstralObjectException";
 import { AstralObject, AstralObjects } from "../model/AstralObject";
 import { Megaverse } from "../model/Megaverse";
 import { Position } from "../model/Position";
@@ -25,8 +26,10 @@ export class MegaverseMapper {
                     row.push(SoloonMapper.buildFromGoal(position, object));
                 } else if (object.endsWith(AstralObjects.COMETH)) {
                     row.push(ComethMapper.buildFromGoal(position, object));
-                } else {
+                } else if (object.endsWith(AstralObjects.VOID)) {
                     row.push(VoidMapper.buildFromGoal(position));
+                } else {
+                    throw new InvalidAstralObjectException(`Found invalid astral object: ${object} at position ${i}, ${j}`);
                 }
 
             }

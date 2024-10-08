@@ -5,10 +5,10 @@ import { Polyanet } from "./Polyanet";
 import { Position } from "./Position";
 
 export enum SoloonColor {
-    BLUE = 'BLUE',
-    RED = 'RED',
-    PURPLE = 'PURPLE',
-    WHITE = 'WHITE'
+    BLUE = 'blue',
+    RED = 'red',
+    PURPLE = 'purple',
+    WHITE = 'white'
 }
 
 export class Soloon extends AstralObject {
