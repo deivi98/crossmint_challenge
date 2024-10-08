@@ -1,5 +1,6 @@
-import { SpaceMapper } from "../mapper/SpaceMapper";
+import { MegaverseMapper } from "../mapper/MegaverseMapper";
 import { AstralObject, AstralObjects } from "./AstralObject";
+import { Megaverse } from "./Megaverse";
 import { Position } from "./Position";
 
 export enum ComethDirection {
@@ -15,6 +16,10 @@ export class Cometh extends AstralObject {
     }
 
     buildKey(): string {
-        return this.direction + SpaceMapper.SEPARATOR + AstralObjects.COMETH;
+        return this.direction + MegaverseMapper.SEPARATOR + AstralObjects.COMETH;
+    }
+    
+    isValid(megaverse: Megaverse): boolean {
+        return true;
     }
 }

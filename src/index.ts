@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
-import { SpaceMapper } from './mapper/SpaceMapper';
 import { MegaverseClientImpl } from './client/MegaverseClientImpl';
 import { GoalResponse } from './dto/GoalResponse';
+import { MegaverseMapper } from './mapper/MegaverseMapper';
 
 dotenv.config();
 
@@ -10,9 +10,11 @@ function main(): void {
   
     client.fetchGoal().then(async (response: GoalResponse) => {
         console.log(response.goal);
-        const space = SpaceMapper.buildFromGoal(response.goal);
+        const megaverse = MegaverseMapper.buildFromGoal(response.goal);
         
-        console.log(space);
+        console.log(megaverse);
+        
+        console.log(megaverse.isValid());
     })
 }
 

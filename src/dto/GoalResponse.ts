@@ -1,3 +1,3 @@
 export interface GoalResponse {
-    goal: Array<Array<string>>;
+    goal: string[][];
 }

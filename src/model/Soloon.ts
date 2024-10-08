@@ -1,5 +1,7 @@
-import { SpaceMapper } from "../mapper/SpaceMapper";
+import { MegaverseMapper } from "../mapper/MegaverseMapper";
 import { AstralObject, AstralObjects } from "./AstralObject";
+import { Megaverse } from "./Megaverse";
+import { Polyanet } from "./Polyanet";
 import { Position } from "./Position";
 
 export enum SoloonColor {
@@ -15,6 +17,22 @@ export class Soloon extends AstralObject {
     }
 
     buildKey(): string {
-        return this.color + SpaceMapper.SEPARATOR + AstralObjects.SOLOON;
+        return this.color + MegaverseMapper.SEPARATOR + AstralObjects.SOLOON;
+    }
+    
+    isValid(megaverse: Megaverse): boolean {
+        if (megaverse.getAstralObject(this.position.x - 1, this.position.y) instanceof Polyanet)
+            return true;
+
+        if (megaverse.getAstralObject(this.position.x + 1, this.position.y) instanceof Polyanet)
+            return true;
+
+        if (megaverse.getAstralObject(this.position.x, this.position.y - 1) instanceof Polyanet)
+            return true;
+
+        if (megaverse.getAstralObject(this.position.x, this.position.y + 1) instanceof Polyanet)
+            return true;
+        
+        return false;
     }
 }
