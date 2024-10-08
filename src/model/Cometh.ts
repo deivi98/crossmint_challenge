@@ -1,5 +1,5 @@
 import { SpaceMapper } from "../mapper/SpaceMapper";
-import { AstralObject } from "./AstralObject";
+import { AstralObject, AstralObjects } from "./AstralObject";
 import { Position } from "./Position";
 
 export enum ComethDirection {
@@ -10,13 +10,11 @@ export enum ComethDirection {
 }
 
 export class Cometh extends AstralObject {
-    static readonly NAME: string = "COMETH";
-
     constructor(readonly position: Position, readonly direction: ComethDirection) {
         super();
     }
 
     buildKey(): string {
-        return this.direction + SpaceMapper.SEPARATOR + Cometh.NAME;
+        return this.direction + SpaceMapper.SEPARATOR + AstralObjects.COMETH;
     }
 }

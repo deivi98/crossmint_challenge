@@ -1,5 +1,5 @@
 import { SpaceMapper } from "../mapper/SpaceMapper";
-import { AstralObject } from "./AstralObject";
+import { AstralObject, AstralObjects } from "./AstralObject";
 import { Position } from "./Position";
 
 export enum SoloonColor {
@@ -10,13 +10,11 @@ export enum SoloonColor {
 }
 
 export class Soloon extends AstralObject {
-    static readonly NAME: string = "SOLOON";
-
     constructor(readonly position: Position, readonly color: SoloonColor) {
         super();
     }
 
     buildKey(): string {
-        return this.color + SpaceMapper.SEPARATOR + Soloon.NAME;
+        return this.color + SpaceMapper.SEPARATOR + AstralObjects.SOLOON;
     }
 }

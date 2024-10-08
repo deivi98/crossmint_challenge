@@ -1,8 +1,5 @@
-import { AstralObject } from "../model/AstralObject";
-import { Cometh } from "../model/Cometh";
-import { Polyanet } from "../model/Polyanet";
+import { AstralObject, AstralObjects } from "../model/AstralObject";
 import { Position } from "../model/Position";
-import { Soloon } from "../model/Soloon";
 import { Space } from "../model/Space";
 import { ComethMapper } from "./ComethMapper";
 import { PolyanetMapper } from "./PolyanetMapper";
@@ -25,11 +22,11 @@ export class SpaceMapper {
                 
                 const position = new Position(i, j);
                 
-                if (object.endsWith(Polyanet.NAME)) {
+                if (object.endsWith(AstralObjects.POLYANET)) {
                     objects.push(PolyanetMapper.buildFromGoal(position));
-                } else if (object.endsWith(Soloon.NAME)) {
+                } else if (object.endsWith(AstralObjects.SOLOON)) {
                     objects.push(SoloonMapper.buildFromGoal(position, object));
-                } else if (object.endsWith(Cometh.NAME)) {
+                } else if (object.endsWith(AstralObjects.COMETH)) {
                     objects.push(ComethMapper.buildFromGoal(position, object));
                 }
 
