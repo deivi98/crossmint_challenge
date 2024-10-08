@@ -17,7 +17,7 @@ export class SimpleAPIClient {
 
     constructor(baseURL: string) {
         // Sets rate limit to client to avoid throttling from megaverse API
-        this.client = axiosRateLimit(axios.create({ baseURL }), { maxRequests: 1, perMilliseconds: 1000 });
+        this.client = axiosRateLimit(axios.create({ baseURL }), { maxRequests: 1, perMilliseconds: process.env.MILLISECONDS_PER_REQUEST });
     }
 
     async get<T>(path: string): Promise<T> {
