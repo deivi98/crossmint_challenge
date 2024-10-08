@@ -1,4 +1,7 @@
+import { Position } from "./Position";
+
 export abstract class AstralObject {
-    private readonly row: number; 
-    private readonly column: number; 
+    abstract readonly position: Position;
+    
+    abstract buildKey(): string;
 }
