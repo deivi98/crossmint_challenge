@@ -17,13 +17,15 @@ export class MegaverseServiceImpl implements MegaverseService {
     }
     
     async pushMegaverse(megaverse: Megaverse): Promise<void> {
+        // We validate megaverse is valid
         megaverse.validate();
         
         const objects = megaverse.getAllAstralObjects();
         
-        objects.forEach((row: AstralObject[]) => {
-            row.filter((obj: AstralObject) => !(obj instanceof Void)).forEach(async (obj: AstralObject) => {
-                
+        for (let row of objects) {
+            const nonVoidObjects: AstralObject[] = row.filter((obj: AstralObject) => !(obj instanceof Void));
+            
+            for (let obj of nonVoidObjects) {
                 if (obj instanceof Polyanet) {
                     await this.client.setPolyanet({ row: obj.position.x, column: obj.position.y });
                 } else if (obj instanceof Soloon) {
@@ -31,8 +33,7 @@ export class MegaverseServiceImpl implements MegaverseService {
                 } else if (obj instanceof Cometh) {
                     await this.client.setCometh({ row: obj.position.x, column: obj.position.y, direction: obj.direction });
                 }
-
-            });
-        });
+            }
+        }
     }
 }
