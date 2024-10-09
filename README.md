@@ -22,7 +22,7 @@ More about it at https://challenge.crossmint.com/
 ## Installation
 1. Clone repo
 2. Ensure you install and use Node v22
-3. Install pnpm
+3. Install `pnpm` and `ts-node`
 4. Run `pnpm i`
 5. Create env file `cp .env.dist .env` and fill env variables
 6. Run program with `pnpm dev`
