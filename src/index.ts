@@ -2,27 +2,24 @@ import dotenv from 'dotenv';
 import { MegaverseClientImpl } from './client/MegaverseClientImpl';
 import { MegaverseServiceImpl } from './service/MegaverseServiceImpl';
 import { Megaverse } from './model/Megaverse';
+import { BaseException } from './error/BaseExcception';
 
 dotenv.config(); // Loads env variables
 
-/**
- * Entry function
- */
-function main(): void {
+(async () => {
     let client = new MegaverseClientImpl();
     let service = new MegaverseServiceImpl(client);
-    
-    try {
-        // First step is to pull and parse goal from Megaverse API
-        service.pullGoalMegaverse().then(async (megaverse: Megaverse) => {
-            // Then parse it to requests and push it back to API
-            service.pushMegaverse(megaverse);
-        })
-    } catch (err) {
-        console.log("Encountered an exception during execution. Stopping program");
-        throw err;
-    }
-  
-}
 
-main();
+    try {
+        const megaverse: Megaverse = await service.pullGoalMegaverse();
+        await service.pushMegaverse(megaverse);
+    } catch (err) {
+        if (err instanceof BaseException) {
+            console.log(`[ERROR] ${err.message}`);
+            process.exit(1);
+        } else {
+            console.log("Encountered an unknown exception during execution. Stopping program");
+            throw err;
+        }
+    }
+})();

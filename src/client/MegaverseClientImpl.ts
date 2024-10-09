@@ -3,7 +3,6 @@ import { GoalResponse } from "../dto/GoalResponse";
 import { SetComethRequest } from "../dto/SetComethRequest";
 import { SetPolyanetRequest } from "../dto/SetPolyanetRequest";
 import { SetSoloonRequest } from "../dto/SetSoloonRequest";
-import { RequestFailedException } from "../error/RequestFailedException";
 import { SimpleAPIClient } from "../lib/SimpleAPIClient";
 import { EnvStore } from "../utils/EnvStore";
 import { MegaverseClient } from "./MegaverseClient";
@@ -23,61 +22,33 @@ export class MegaverseClientImpl implements MegaverseClient {
     }
     
     async fetchGoal(): Promise<GoalResponse> {
-        try {
-            return await this.apiClient.get<GoalResponse>(`map/${this.CANDIDATE_ID}/goal`);
-        } catch (err) {
-            throw new RequestFailedException('Failed to fetch goal megaverse', err);
-        }
+        return await this.apiClient.get<GoalResponse>(`map/${this.CANDIDATE_ID}/goal`);
     }
     
     async setPolyanet(request: SetPolyanetRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`polyanets`, { candidateId: this.CANDIDATE_ID, ...request })
-            console.log(`Successfully set POLYANET at position ${request.row}, ${request.column} ...`);
-        } catch (err) {
-            throw new RequestFailedException(`Failed to set polyanet at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`polyanets`, { candidateId: this.CANDIDATE_ID, ...request })
+        console.log(`Successfully set POLYANET at position ${request.row}, ${request.column} ...`);
     }
     
     async setSoloon(request: SetSoloonRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`soloons`, { candidateId: this.CANDIDATE_ID, ...request });
-            console.log(`Successfully set SOLOON (${request.color}) at position ${request.row}, ${request.column} ...`);
-        } catch (err) {
-            throw new RequestFailedException(`Failed to set soloon at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`soloons`, { candidateId: this.CANDIDATE_ID, ...request });
+        console.log(`Successfully set SOLOON (${request.color}) at position ${request.row}, ${request.column} ...`);
     }
     
     async setCometh(request: SetComethRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`comeths`, { candidateId: this.CANDIDATE_ID, ...request })
-            console.log(`Successfully set COMETH (${request.direction}) at position ${request.row}, ${request.column} ...`);
-        } catch (err) {
-            throw new RequestFailedException(`Failed to set cometh at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`comeths`, { candidateId: this.CANDIDATE_ID, ...request })
+        console.log(`Successfully set COMETH (${request.direction}) at position ${request.row}, ${request.column} ...`);
     }
     
     async delPolyanet(request: DelAstralObjectRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`polyanets`, { candidateId: this.CANDIDATE_ID, ...request });
-        } catch (err) {
-            throw new RequestFailedException(`Failed to remove polyanet at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`polyanets`, { candidateId: this.CANDIDATE_ID, ...request });
     }
     
     async delSoloon(request: DelAstralObjectRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`soloons`, { candidateId: this.CANDIDATE_ID, ...request });
-        } catch (err) {
-            throw new RequestFailedException(`Failed to remove soloon at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`soloons`, { candidateId: this.CANDIDATE_ID, ...request });
     }
 
     async delCometh(request: DelAstralObjectRequest): Promise<void> {
-        try {
-            await this.apiClient.post(`comeths`, { candidateId: this.CANDIDATE_ID, ...request });
-        } catch (err) {
-            throw new RequestFailedException(`Failed to remove cometh at position ${request.row}, ${request.column}`, err);
-        }
+        await this.apiClient.post(`comeths`, { candidateId: this.CANDIDATE_ID, ...request });
     }
 }

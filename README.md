@@ -35,6 +35,6 @@ More about it at https://challenge.crossmint.com/
 - [ ] Use of value-objects for validation purposes
 - [ ] Allow multiple astral objects in same position?
 - [ ] Not use Void model if not necessary
-- [ ] Better error handling and logs
+- [x] Better error handling and logs
 - [x] Comments and docs
 - [x] Check env variables are set
