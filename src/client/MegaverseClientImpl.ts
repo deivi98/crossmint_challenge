@@ -5,6 +5,7 @@ import { SetPolyanetRequest } from "../dto/SetPolyanetRequest";
 import { SetSoloonRequest } from "../dto/SetSoloonRequest";
 import { RequestFailedException } from "../error/RequestFailedException";
 import { SimpleAPIClient } from "../lib/SimpleAPIClient";
+import { EnvStore } from "../utils/EnvStore";
 import { MegaverseClient } from "./MegaverseClient";
 
 /**
@@ -17,8 +18,8 @@ export class MegaverseClientImpl implements MegaverseClient {
     private readonly apiClient: SimpleAPIClient;
 
     constructor() {
-        this.apiClient = new SimpleAPIClient(process.env.MEGAVERSE_API_URL);
-        this.CANDIDATE_ID = process.env.CANDIDATE_ID;
+        this.apiClient = new SimpleAPIClient(EnvStore.getOrExit('MEGAVERSE_API_URL'));
+        this.CANDIDATE_ID = EnvStore.getOrExit('CANDIDATE_ID');
     }
     
     async fetchGoal(): Promise<GoalResponse> {

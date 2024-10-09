@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig, AxiosResponse, RawAxiosRequestHeaders } from "axios";
 import axiosRateLimit, { RateLimitedAxiosInstance } from "axios-rate-limit";
+import { EnvStore } from "../utils/EnvStore";
 
 /**
  * Just a simple API client using axios lib.
@@ -17,7 +18,7 @@ export class SimpleAPIClient {
 
     constructor(baseURL: string) {
         // Sets rate limit to client to avoid throttling from megaverse API
-        this.client = axiosRateLimit(axios.create({ baseURL }), { maxRequests: 1, perMilliseconds: process.env.MILLISECONDS_PER_REQUEST });
+        this.client = axiosRateLimit(axios.create({ baseURL }), { maxRequests: 1, perMilliseconds: EnvStore.getOrDefault('MILLISECONDS_PER_REQUEST', 2000) });
     }
 
     async get<T>(path: string): Promise<T> {

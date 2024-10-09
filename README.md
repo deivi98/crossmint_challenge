@@ -31,9 +31,10 @@ More about it at https://challenge.crossmint.com/
 > This project has only been tested in Linux using Node v22. It is not intented to work smoothly otherwise
 
 ## TO-DO
+- [ ] Unit tests
 - [ ] Use of value-objects for validation purposes
 - [ ] Allow multiple astral objects in same position?
 - [ ] Not use Void model if not necessary
 - [ ] Better error handling and logs
 - [x] Comments and docs
-- [ ] Check env variables are set
+- [x] Check env variables are set
